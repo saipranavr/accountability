@@ -2,8 +2,6 @@
 //  ContentView.swift
 //  accountability
 //
-//  Created by Pranav reddy on 16/10/2025.
-//
 
 import SwiftUI
 
@@ -22,3 +20,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+

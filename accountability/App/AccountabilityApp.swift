@@ -1,17 +1,19 @@
 //
-//  accountabilityApp.swift
+//  AccountabilityApp.swift
 //  accountability
 //
-//  Created by Pranav reddy on 16/10/2025.
+//  Application entry point.
 //
 
 import SwiftUI
 
 @main
-struct accountabilityApp: App {
+struct AccountabilityApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
         }
     }
 }
+
+
