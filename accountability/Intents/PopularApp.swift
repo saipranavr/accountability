@@ -38,6 +38,23 @@ enum PopularApp: String, AppEnum {
         .messages: DisplayRepresentation(title: "Messages"),
         .phone: DisplayRepresentation(title: "Phone")
     ]
+
+    var displayTitle: String {
+        switch self {
+        case .instagram: return "Instagram"
+        case .youtube: return "YouTube"
+        case .tiktok: return "TikTok"
+        case .spotify: return "Spotify"
+        case .facebook: return "Facebook"
+        case .snapchat: return "Snapchat"
+        case .whatsapp: return "WhatsApp"
+        case .gmail: return "Gmail"
+        case .chrome: return "Chrome"
+        case .maps: return "Maps"
+        case .messages: return "Messages"
+        case .phone: return "Phone"
+        }
+    }
 }
 
 

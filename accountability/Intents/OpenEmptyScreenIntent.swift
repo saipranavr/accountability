@@ -7,6 +7,7 @@
 
 import Foundation
 import AppIntents
+import SwiftUI
 
 @available(iOS 17.0, *)
 struct OpenEmptyScreenIntent: AppIntent {
@@ -22,7 +23,31 @@ struct OpenEmptyScreenIntent: AppIntent {
     }
 
     func perform() async throws -> some IntentResult {
-        UserDefaults.standard.set(true, forKey: AppStorageKeys.shouldShowEmptyScreen)
+        let store = UserDefaults(suiteName: AppStorageKeys.appGroup) ?? .standard
+        store.set(true, forKey: AppStorageKeys.shouldShowEmptyScreen)
+        if let app {
+            // Persist chosen app scheme and a friendly title for the Empty screen button
+            store.set(app.rawValue, forKey: AppStorageKeys.selectedAppScheme)
+            let title: String
+            switch app {
+            case .instagram: title = "Instagram"
+            case .youtube: title = "YouTube"
+            case .tiktok: title = "TikTok"
+            case .spotify: title = "Spotify"
+            case .facebook: title = "Facebook"
+            case .snapchat: title = "Snapchat"
+            case .whatsapp: title = "WhatsApp"
+            case .gmail: title = "Gmail"
+            case .chrome: title = "Chrome"
+            case .maps: title = "Maps"
+            case .messages: title = "Messages"
+            case .phone: title = "Phone"
+            }
+            store.set(title, forKey: AppStorageKeys.selectedAppTitle)
+        } else {
+            store.removeObject(forKey: AppStorageKeys.selectedAppScheme)
+            store.removeObject(forKey: AppStorageKeys.selectedAppTitle)
+        }
         return .result()
     }
 }

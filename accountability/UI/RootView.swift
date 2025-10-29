@@ -6,14 +6,14 @@
 import SwiftUI
 
 struct RootView: View {
-    @AppStorage(AppStorageKeys.shouldShowEmptyScreen) private var shouldShowEmptyScreen: Bool = false
+    @AppStorage(AppStorageKeys.shouldShowEmptyScreen, store: UserDefaults(suiteName: AppStorageKeys.appGroup)) private var shouldShowEmptyScreen: Bool = false
 
     var body: some View {
         Group {
             if shouldShowEmptyScreen {
                 EmptyScreenView()
-                    .task {
-                        // Reset after showing once so normal routing resumes
+                    .onDisappear {
+                        // Reset after the empty screen is dismissed
                         shouldShowEmptyScreen = false
                     }
             } else {
